@@ -111,8 +111,6 @@ function abrirModal(tipo){
 
 }
 
-}
-
 guardarMovimiento.onclick = ()=>{
 
     const texto = descripcion.value.trim();
