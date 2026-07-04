@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
@@ -7,7 +8,7 @@
 
 <title>BRAIAN OS</title>
 
-<meta name="theme-color" content="#0B1220">
+<meta name="theme-color" content="#08111f">
 
 <link rel="manifest" href="manifest.json">
 
@@ -43,13 +44,13 @@
 
 <h2>Patrimonio Total</h2>
 
-<h1 id="patrimonio">$5.604.031</h1>
+<h1 id="patrimonio">$0</h1>
 
 <p id="mensaje">
 
-Bienvenido, Braian.
+Bienvenido.
 
-Hoy seguimos construyendo tu libertad financiera.
+Cada peso cuenta para construir tu libertad financiera.
 
 </p>
 
@@ -61,7 +62,7 @@ Hoy seguimos construyendo tu libertad financiera.
 
 <span>💵 Disponible</span>
 
-<h3 id="saldo">$762.031</h3>
+<h3 id="saldo">$0</h3>
 
 </div>
 
@@ -69,7 +70,7 @@ Hoy seguimos construyendo tu libertad financiera.
 
 <span>🏦 Ahorros</span>
 
-<h3 id="ahorro">$4.842.000</h3>
+<h3 id="ahorro">$0</h3>
 
 </div>
 
@@ -77,80 +78,21 @@ Hoy seguimos construyendo tu libertad financiera.
 
 <span>⚔️ Deudas</span>
 
-<h3 id="deudas">$40.000.000</h3>
+<h3 id="deudas">$0</h3>
 
 </div>
 
 <div class="card">
 
-<span>🎯 Meta Carro</span>
+<span>🎯 Meta</span>
 
-<h3>12%</h3>
+<h3>0%</h3>
 
 </div>
 
 </section>
 
 <section class="actions">
-  <div id="modal" class="modal oculto">
-
-    <div class="modal-content">
-
-        <h2 id="tituloModal">Nuevo Movimiento</h2>
-
-        <input
-            type="text"
-            id="descripcion"
-            placeholder="Descripción">
-
-        <input
-            type="number"
-            id="valor"
-            placeholder="Valor">
-
-        <select id="categoria">
-
-            <option>Salario</option>
-
-            <option>Horas Extras</option>
-
-            <option>Alimentación</option>
-
-            <option>Gasolina</option>
-
-            <option>Arriendo</option>
-
-            <option>Servicios</option>
-
-            <option>Transporte</option>
-
-            <option>Ahorro</option>
-
-            <option>Deuda</option>
-
-            <option>Otro</option>
-
-        </select>
-
-        <div class="modal-buttons">
-
-            <button id="guardarMovimiento">
-
-                Guardar
-
-            </button>
-
-            <button id="cancelarMovimiento">
-
-                Cancelar
-
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
 
 <button id="nuevoIngreso">
 
@@ -168,7 +110,7 @@ Hoy seguimos construyendo tu libertad financiera.
 
 <section class="movimientos">
 
-<h2>Movimientos recientes</h2>
+<h2>Movimientos</h2>
 
 <div id="listaMovimientos">
 
@@ -177,6 +119,72 @@ Hoy seguimos construyendo tu libertad financiera.
 </div>
 
 </section>
+
+</div>
+
+<div id="modal" class="modal oculto">
+
+<div class="modal-content">
+
+<h2 id="tituloModal">
+
+Nuevo movimiento
+
+</h2>
+
+<input
+id="descripcion"
+type="text"
+placeholder="Descripción">
+
+<input
+id="valor"
+type="number"
+placeholder="Valor">
+
+<select id="categoria">
+
+<option>Salario</option>
+
+<option>Horas Extras</option>
+
+<option>Alimentación</option>
+
+<option>Gasolina</option>
+
+<option>Arriendo</option>
+
+<option>Servicios</option>
+
+<option>Transporte</option>
+
+<option>Ahorro</option>
+
+<option>Pago deuda</option>
+
+<option>Otro</option>
+
+</select>
+
+<div class="modal-buttons">
+
+<button id="guardarMovimiento">
+
+Guardar
+
+</button>
+
+<button id="cancelarMovimiento">
+
+Cancelar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 <nav class="menu">
 
@@ -192,9 +200,8 @@ Hoy seguimos construyendo tu libertad financiera.
 
 </nav>
 
-</div>
-
 <script src="app.js"></script>
 
 </body>
+
 </html>
