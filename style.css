@@ -219,3 +219,84 @@ body{
 }
 
 }
+/* ===== MODAL ===== */
+
+.oculto{
+    display:none;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+    padding:20px;
+}
+
+.modal-content{
+    width:100%;
+    max-width:420px;
+    background:#121d2d;
+    border:1px solid #223149;
+    border-radius:22px;
+    padding:25px;
+    animation:aparecer .25s ease;
+}
+
+.modal-content h2{
+    margin-bottom:20px;
+}
+
+.modal-content input,
+.modal-content select{
+    width:100%;
+    padding:15px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:12px;
+    background:#1b2a40;
+    color:white;
+    font-size:16px;
+}
+
+.modal-content input:focus,
+.modal-content select:focus{
+    outline:2px solid #22c55e;
+}
+
+.modal-buttons{
+    display:flex;
+    gap:12px;
+    margin-top:10px;
+}
+
+.modal-buttons button{
+    flex:1;
+}
+
+#guardarMovimiento{
+    background:#22c55e;
+    color:white;
+}
+
+#cancelarMovimiento{
+    background:#ef4444;
+    color:white;
+}
+
+@keyframes aparecer{
+
+from{
+    transform:scale(.9);
+    opacity:0;
+}
+
+to{
+    transform:scale(1);
+    opacity:1;
+}
+
+}
