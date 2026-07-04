@@ -11,92 +11,160 @@ const saldo = document.getElementById("saldo");
 const ahorro = document.getElementById("ahorro");
 const deudas = document.getElementById("deudas");
 const patrimonio = document.getElementById("patrimonio");
-const lista = document.getElementById("listaMovimientos");
+const listaMovimientos = document.getElementById("listaMovimientos");
 
-function dinero(valor){
-    return "$" + valor.toLocaleString("es-CO");
+const modal = document.getElementById("modal");
+const tituloModal = document.getElementById("tituloModal");
+const descripcion = document.getElementById("descripcion");
+const valor = document.getElementById("valor");
+const categoria = document.getElementById("categoria");
+
+const guardarMovimiento = document.getElementById("guardarMovimiento");
+const cancelarMovimiento = document.getElementById("cancelarMovimiento");
+
+const nuevoIngreso = document.getElementById("nuevoIngreso");
+const nuevoGasto = document.getElementById("nuevoGasto");
+
+let tipoMovimiento = "ingreso";
+
+function formatoDinero(numero){
+    return "$" + numero.toLocaleString("es-CO");
 }
 
-function guardar(){
+function guardarDatos(){
     localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
 }
 
-function render(){
+function actualizarDashboard(){
 
-    saldo.textContent = dinero(estado.saldo);
-    ahorro.textContent = dinero(estado.ahorro);
-    deudas.textContent = dinero(estado.deuda);
+    saldo.textContent = formatoDinero(estado.saldo);
+    ahorro.textContent = formatoDinero(estado.ahorro);
+    deudas.textContent = formatoDinero(estado.deuda);
 
-    const patrimonioTotal = estado.saldo + estado.ahorro - estado.deuda;
-    patrimonio.textContent = dinero(patrimonioTotal);
+    const total = estado.saldo + estado.ahorro - estado.deuda;
+
+    patrimonio.textContent = formatoDinero(total);
+
+}
+
+function actualizarMovimientos(){
 
     if(estado.movimientos.length===0){
-        lista.innerHTML="<p>No hay movimientos registrados.</p>";
+
+        listaMovimientos.innerHTML="<p>No hay movimientos registrados.</p>";
+
         return;
+
     }
 
-    lista.innerHTML="";
+    listaMovimientos.innerHTML="";
 
     [...estado.movimientos].reverse().forEach(item=>{
 
-        lista.innerHTML+=`
-        <div class="movimiento">
-            <div>
-                <strong>${item.descripcion}</strong><br>
-                <small>${item.fecha}</small>
-            </div>
+        listaMovimientos.innerHTML += `
+            <div class="movimiento">
 
-            <div class="${item.tipo}">
-                ${item.tipo==="ingreso"?"+":"-"} ${dinero(item.valor)}
+                <div>
+
+                    <strong>${item.categoria}</strong><br>
+
+                    <small>${item.descripcion}</small><br>
+
+                    <small>${item.fecha}</small>
+
+                </div>
+
+                <div class="${item.tipo}">
+                    ${item.tipo==="ingreso" ? "+" : "-"}
+                    ${formatoDinero(item.valor)}
+                </div>
+
             </div>
-        </div>
         `;
 
     });
 
 }
 
-function registrar(tipo){
+function abrirModal(tipo){
 
-    const descripcion = prompt("Descripción");
+    tipoMovimiento = tipo;
 
-    if(!descripcion) return;
+    tituloModal.textContent =
+        tipo==="ingreso"
+        ? "Nuevo ingreso"
+        : "Nuevo gasto";
 
-    const valor = Number(prompt("Valor"));
+    descripcion.value="";
+    valor.value="";
+    categoria.selectedIndex=0;
 
-    if(isNaN(valor) || valor<=0) return;
+    modal.classList.remove("oculto");
 
-    const fecha = new Date().toLocaleDateString("es-CO");
+    descripcion.focus();
 
-    if(tipo==="ingreso"){
-        estado.saldo += valor;
+}
+
+function cerrarModal(){
+
+    modal.classList.add("oculto");
+
+}
+
+guardarMovimiento.onclick = ()=>{
+
+    const texto = descripcion.value.trim();
+
+    const monto = Number(valor.value);
+
+    if(texto==="" || monto<=0){
+
+        alert("Completa todos los campos.");
+
+        return;
+
+    }
+
+    if(tipoMovimiento==="ingreso"){
+
+        estado.saldo += monto;
+
     }else{
-        estado.saldo -= valor;
+
+        estado.saldo -= monto;
+
     }
 
     estado.movimientos.push({
-        tipo,
-        descripcion,
-        valor,
-        fecha
+
+        tipo:tipoMovimiento,
+
+        categoria:categoria.value,
+
+        descripcion:texto,
+
+        valor:monto,
+
+        fecha:new Date().toLocaleDateString("es-CO")
+
     });
 
-    guardar();
+    guardarDatos();
 
-    render();
+    actualizarDashboard();
 
-}
+    actualizarMovimientos();
 
-document
-.getElementById("nuevoIngreso")
-.addEventListener("click",()=>registrar("ingreso"));
+    cerrarModal();
 
-document
-.getElementById("nuevoGasto")
-.addEventListener("click",()=>registrar("gasto"));
+};
 
-render();
+cancelarMovimiento.onclick = cerrarModal;
 
-if("serviceWorker" in navigator){
-    navigator.serviceWorker.register("service-worker.js");
-}
+nuevoIngreso.onclick = ()=>abrirModal("ingreso");
+
+nuevoGasto.onclick = ()=>abrirModal("gasto");
+
+actualizarDashboard();
+
+actualizarMovimientos();
