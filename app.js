@@ -1,99 +1,102 @@
-const saldoDisponible = document.getElementById("saldoDisponible");
-const ahorro = document.getElementById("ahorros");
-const historial = document.getElementById("historial");
+const STORAGE_KEY = "braian-os";
 
-let datos = JSON.parse(localStorage.getItem("braianOS")) || {
+const estado = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
     saldo: 762031,
-    ahorros: 4842000,
+    ahorro: 4842000,
+    deuda: 40000000,
     movimientos: []
 };
 
-function formato(valor){
+const saldo = document.getElementById("saldo");
+const ahorro = document.getElementById("ahorro");
+const deudas = document.getElementById("deudas");
+const patrimonio = document.getElementById("patrimonio");
+const lista = document.getElementById("listaMovimientos");
+
+function dinero(valor){
     return "$" + valor.toLocaleString("es-CO");
 }
 
 function guardar(){
-    localStorage.setItem("braianOS", JSON.stringify(datos));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(estado));
 }
 
-function actualizarPantalla(){
+function render(){
 
-    saldoDisponible.textContent = formato(datos.saldo);
+    saldo.textContent = dinero(estado.saldo);
+    ahorro.textContent = dinero(estado.ahorro);
+    deudas.textContent = dinero(estado.deuda);
 
-    ahorro.textContent = formato(datos.ahorros);
+    const patrimonioTotal = estado.saldo + estado.ahorro - estado.deuda;
+    patrimonio.textContent = dinero(patrimonioTotal);
 
-    if(datos.movimientos.length===0){
-        historial.innerHTML="<p>Aún no hay movimientos registrados.</p>";
+    if(estado.movimientos.length===0){
+        lista.innerHTML="<p>No hay movimientos registrados.</p>";
         return;
     }
 
-    historial.innerHTML="";
+    lista.innerHTML="";
 
-    datos.movimientos.slice().reverse().forEach(m=>{
+    [...estado.movimientos].reverse().forEach(item=>{
 
-        historial.innerHTML+=`
+        lista.innerHTML+=`
         <div class="movimiento">
-            <span>${m.descripcion}</span>
-            <span class="${m.tipo}">
-                ${m.tipo==="ingreso"?"+":"-"} ${formato(m.valor)}
-            </span>
-        </div>`;
+            <div>
+                <strong>${item.descripcion}</strong><br>
+                <small>${item.fecha}</small>
+            </div>
+
+            <div class="${item.tipo}">
+                ${item.tipo==="ingreso"?"+":"-"} ${dinero(item.valor)}
+            </div>
+        </div>
+        `;
+
     });
 
 }
 
-document.getElementById("btnIngreso").onclick=function(){
+function registrar(tipo){
 
-    const descripcion=prompt("Descripción del ingreso");
+    const descripcion = prompt("Descripción");
 
     if(!descripcion) return;
 
-    const valor=parseFloat(prompt("Valor del ingreso"));
+    const valor = Number(prompt("Valor"));
 
-    if(isNaN(valor)) return;
+    if(isNaN(valor) || valor<=0) return;
 
-    datos.saldo+=valor;
+    const fecha = new Date().toLocaleDateString("es-CO");
 
-    datos.movimientos.push({
-        tipo:"ingreso",
+    if(tipo==="ingreso"){
+        estado.saldo += valor;
+    }else{
+        estado.saldo -= valor;
+    }
+
+    estado.movimientos.push({
+        tipo,
         descripcion,
-        valor
+        valor,
+        fecha
     });
 
     guardar();
 
-    actualizarPantalla();
+    render();
 
 }
 
-document.getElementById("btnGasto").onclick=function(){
+document
+.getElementById("nuevoIngreso")
+.addEventListener("click",()=>registrar("ingreso"));
 
-    const descripcion=prompt("Descripción del gasto");
+document
+.getElementById("nuevoGasto")
+.addEventListener("click",()=>registrar("gasto"));
 
-    if(!descripcion) return;
-
-    const valor=parseFloat(prompt("Valor del gasto"));
-
-    if(isNaN(valor)) return;
-
-    datos.saldo-=valor;
-
-    datos.movimientos.push({
-        tipo:"gasto",
-        descripcion,
-        valor
-    });
-
-    guardar();
-
-    actualizarPantalla();
-
-}
-
-actualizarPantalla();
+render();
 
 if("serviceWorker" in navigator){
-
     navigator.serviceWorker.register("service-worker.js");
-
 }
