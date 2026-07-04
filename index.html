@@ -3,12 +3,11 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>BRAIAN OS</title>
 
-<meta name="theme-color" content="#070B12">
+<meta name="theme-color" content="#0B1220">
 
 <link rel="manifest" href="manifest.json">
 
@@ -20,74 +19,123 @@
 
 <div id="app">
 
-<header class="header">
+<header class="topbar">
+
+<div>
 
 <h1>BRAIAN OS</h1>
 
-<p>Tu sistema financiero personal</p>
+<p>Control total de tu dinero</p>
+
+</div>
+
+<div class="level">
+
+<span>Nivel</span>
+
+<strong>1</strong>
+
+</div>
 
 </header>
 
-<section class="dashboard">
+<section class="hero">
+
+<h2>Patrimonio Total</h2>
+
+<h1 id="patrimonio">$5.604.031</h1>
+
+<p id="mensaje">
+
+Bienvenido, Braian.
+
+Hoy seguimos construyendo tu libertad financiera.
+
+</p>
+
+</section>
+
+<section class="cards">
 
 <div class="card">
 
-<h2>Disponible</h2>
+<span>💵 Disponible</span>
 
-<h3 id="saldoDisponible">$762.031</h3>
+<h3 id="saldo">$762.031</h3>
 
 </div>
 
 <div class="card">
 
-<h2>Ahorros</h2>
+<span>🏦 Ahorros</span>
 
-<h3 id="ahorros">$4.842.000</h3>
+<h3 id="ahorro">$4.842.000</h3>
 
 </div>
 
 <div class="card">
 
-<h2>Objetivo</h2>
+<span>⚔️ Deudas</span>
 
-<p>🚗 Comprar vehículo</p>
+<h3 id="deudas">$40.000.000</h3>
+
+</div>
+
+<div class="card">
+
+<span>🎯 Meta Carro</span>
+
+<h3>12%</h3>
 
 </div>
 
 </section>
 
-<section class="acciones">
+<section class="actions">
 
-<button id="btnIngreso">
+<button id="nuevoIngreso">
 
-Registrar ingreso
++ Ingreso
 
 </button>
 
-<button id="btnGasto">
+<button id="nuevoGasto">
 
-Registrar gasto
+- Gasto
 
 </button>
 
 </section>
 
-<section>
+<section class="movimientos">
 
-<h2>Últimos movimientos</h2>
+<h2>Movimientos recientes</h2>
 
-<div id="historial">
+<div id="listaMovimientos">
 
-<p>Aún no hay movimientos registrados.</p>
+<p>No hay movimientos registrados.</p>
 
 </div>
 
 </section>
+
+<nav class="menu">
+
+<button>🏠</button>
+
+<button>💰</button>
+
+<button>📊</button>
+
+<button>🎯</button>
+
+<button>⚙️</button>
+
+</nav>
 
 </div>
 
 <script src="app.js"></script>
 
 </body>
-
 </html>
