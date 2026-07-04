@@ -99,15 +99,17 @@ function abrirModal(tipo){
     valor.value="";
     categoria.selectedIndex=0;
 
-    modal.classList.remove("oculto");
+    modal.style.display = "flex";
 
     descripcion.focus();
 
 }
 
-function cerrarModal(){
+    function cerrarModal(){
 
-    modal.classList.add("oculto");
+    modal.style.display = "none";
+
+}
 
 }
 
@@ -164,6 +166,8 @@ cancelarMovimiento.onclick = cerrarModal;
 nuevoIngreso.onclick = ()=>abrirModal("ingreso");
 
 nuevoGasto.onclick = ()=>abrirModal("gasto");
+
+modal.style.display = "none";
 
 actualizarDashboard();
 
