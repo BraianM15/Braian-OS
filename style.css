@@ -1,225 +1,175 @@
 :root{
-  --bg:#08111f;
-  --surface:#121d2d;
-  --surface2:#1a273b;
-  --primary:#22c55e;
-  --primary-dark:#16a34a;
-  --text:#ffffff;
-  --muted:#9ca3af;
-  --border:#223149;
-  --danger:#ef4444;
-  --radius:18px;
+    --bg:#08111f;
+    --card:#121d2d;
+    --card2:#1a273b;
+    --green:#22c55e;
+    --greenDark:#16a34a;
+    --red:#ef4444;
+    --text:#ffffff;
+    --muted:#94a3b8;
+    --border:#223149;
+    --radius:18px;
 }
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 }
 
 #app{
-  max-width:900px;
-  margin:auto;
-  padding:24px;
-  padding-bottom:110px;
+    max-width:900px;
+    margin:auto;
+    padding:22px;
+    padding-bottom:120px;
 }
 
 .topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
 }
 
 .topbar h1{
-  font-size:34px;
-  font-weight:800;
+    font-size:34px;
+    font-weight:800;
 }
 
 .topbar p{
-  color:var(--muted);
-  margin-top:4px;
+    color:var(--muted);
+    margin-top:5px;
 }
 
 .level{
-  background:var(--surface);
-  padding:14px 20px;
-  border-radius:16px;
-  text-align:center;
-  border:1px solid var(--border);
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:14px 20px;
+    border-radius:16px;
+    text-align:center;
 }
 
 .level span{
-  display:block;
-  color:var(--muted);
-  font-size:12px;
+    display:block;
+    color:var(--muted);
+    font-size:12px;
 }
 
 .level strong{
-  font-size:24px;
+    font-size:24px;
 }
 
 .hero{
-  background:linear-gradient(135deg,#16a34a,#15803d);
-  border-radius:25px;
-  padding:30px;
-  margin-bottom:25px;
-  box-shadow:0 12px 30px rgba(0,0,0,.35);
+    background:linear-gradient(135deg,#22c55e,#15803d);
+    border-radius:24px;
+    padding:28px;
+    margin-bottom:25px;
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
 }
 
 .hero h2{
-  font-size:16px;
-  opacity:.9;
+    font-size:15px;
+    opacity:.9;
 }
 
 .hero h1{
-  font-size:42px;
-  margin:10px 0;
+    font-size:42px;
+    margin:10px 0;
 }
 
 .hero p{
-  opacity:.9;
-  line-height:1.5;
+    line-height:1.5;
 }
 
 .cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:18px;
-  margin-bottom:25px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px;
+    margin-bottom:25px;
 }
 
 .card{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:20px;
-  transition:.25s;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:20px;
+    transition:.25s;
 }
 
 .card:hover{
-  transform:translateY(-4px);
+    transform:translateY(-4px);
 }
 
 .card span{
-  color:var(--muted);
-  display:block;
-  margin-bottom:10px;
+    color:var(--muted);
+    display:block;
+    margin-bottom:10px;
 }
 
 .card h3{
-  font-size:28px;
+    font-size:28px;
 }
 
 .actions{
-  display:flex;
-  gap:15px;
-  margin-bottom:25px;
+    display:flex;
+    gap:14px;
+    margin-bottom:25px;
 }
 
 .actions button{
-  flex:1;
-  padding:16px;
-  border:none;
-  border-radius:14px;
-  cursor:pointer;
-  font-size:16px;
-  font-weight:700;
-  transition:.25s;
+    flex:1;
+    border:none;
+    border-radius:14px;
+    padding:16px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
 }
 
 #nuevoIngreso{
-  background:var(--primary);
-  color:white;
-}
-
-#nuevoIngreso:hover{
-  background:var(--primary-dark);
+    background:var(--green);
+    color:white;
 }
 
 #nuevoGasto{
-  background:var(--danger);
-  color:white;
+    background:var(--red);
+    color:white;
 }
 
 .movimientos{
-  background:var(--surface);
-  border-radius:var(--radius);
-  border:1px solid var(--border);
-  padding:22px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px;
 }
 
 .movimientos h2{
-  margin-bottom:20px;
+    margin-bottom:20px;
 }
 
 .movimiento{
-  display:flex;
-  justify-content:space-between;
-  padding:14px 0;
-  border-bottom:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
 }
 
 .ingreso{
-  color:var(--primary);
-  font-weight:bold;
+    color:var(--green);
+    font-weight:bold;
 }
 
 .gasto{
-  color:var(--danger);
-  font-weight:bold;
+    color:var(--red);
+    font-weight:bold;
 }
-
-.menu{
-  position:fixed;
-  left:50%;
-  transform:translateX(-50%);
-  bottom:18px;
-  width:min(92%,700px);
-  display:flex;
-  justify-content:space-around;
-  background:rgba(18,29,45,.96);
-  backdrop-filter:blur(18px);
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:14px;
-}
-
-.menu button{
-  background:none;
-  border:none;
-  color:white;
-  font-size:24px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.menu button:hover{
-  transform:scale(1.15);
-}
-
-@media(max-width:700px){
-
-.hero h1{
-  font-size:34px;
-}
-
-.cards{
-  grid-template-columns:1fr;
-}
-
-.actions{
-  flex-direction:column;
-}
-
-}
-/* ===== MODAL ===== */
 
 .oculto{
     display:none;
@@ -232,71 +182,94 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    z-index:999;
     padding:20px;
+    z-index:999;
 }
 
 .modal-content{
     width:100%;
     max-width:420px;
-    background:#121d2d;
-    border:1px solid #223149;
+    background:var(--card);
     border-radius:22px;
+    border:1px solid var(--border);
     padding:25px;
-    animation:aparecer .25s ease;
 }
 
 .modal-content h2{
-    margin-bottom:20px;
+    margin-bottom:18px;
 }
 
 .modal-content input,
 .modal-content select{
     width:100%;
     padding:15px;
-    margin-bottom:15px;
+    margin-bottom:14px;
     border:none;
     border-radius:12px;
-    background:#1b2a40;
+    background:var(--card2);
     color:white;
     font-size:16px;
-}
-
-.modal-content input:focus,
-.modal-content select:focus{
-    outline:2px solid #22c55e;
 }
 
 .modal-buttons{
     display:flex;
     gap:12px;
-    margin-top:10px;
 }
 
 .modal-buttons button{
     flex:1;
+    border:none;
+    border-radius:12px;
+    padding:15px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
 #guardarMovimiento{
-    background:#22c55e;
+    background:var(--green);
     color:white;
 }
 
 #cancelarMovimiento{
-    background:#ef4444;
+    background:var(--red);
     color:white;
 }
 
-@keyframes aparecer{
-
-from{
-    transform:scale(.9);
-    opacity:0;
+.menu{
+    position:fixed;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:18px;
+    width:min(92%,700px);
+    background:#121d2dee;
+    border:1px solid var(--border);
+    border-radius:22px;
+    backdrop-filter:blur(15px);
+    display:flex;
+    justify-content:space-around;
+    padding:14px;
 }
 
-to{
-    transform:scale(1);
-    opacity:1;
+.menu button{
+    background:none;
+    border:none;
+    color:white;
+    font-size:24px;
+    cursor:pointer;
+}
+
+@media(max-width:700px){
+
+.hero h1{
+    font-size:34px;
+}
+
+.cards{
+    grid-template-columns:1fr;
+}
+
+.actions{
+    flex-direction:column;
 }
 
 }
